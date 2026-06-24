@@ -1,0 +1,28 @@
+services:
+  postgres_db:
+    image: postgres:18
+    container_name: ai_codebase_db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${APP_CONFIG__DB__USER}
+      POSTGRES_PASSWORD: ${APP_CONFIG__DB__PASSWORD}
+      POSTGRES_DB: ${APP_CONFIG__DB__DB}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${APP_CONFIG__DB__USER} -d ${APP_CONFIG__DB__DB}"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
