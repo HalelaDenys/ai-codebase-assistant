@@ -1,8 +1,10 @@
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import TIMESTAMP, func, MetaData, UUID, text, Enum
-from core import settings
-from datetime import datetime
 import uuid
+from datetime import datetime
+
+from sqlalchemy import TIMESTAMP, UUID, Enum, MetaData, func, text
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+from core import settings
 from entities.schemas import RepoStatusEnum
 
 

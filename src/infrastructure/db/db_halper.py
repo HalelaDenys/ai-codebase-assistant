@@ -1,12 +1,14 @@
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
+
+from sqlalchemy import URL
 from sqlalchemy.ext.asyncio import (
-    async_sessionmaker,
-    create_async_engine,
     AsyncEngine,
     AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
 )
-from sqlalchemy import URL
-from typing import AsyncGenerator
+
 from core import settings
 
 

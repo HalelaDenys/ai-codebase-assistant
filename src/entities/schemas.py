@@ -1,9 +1,10 @@
-from pydantic import BaseModel, HttpUrl
+from enum import StrEnum
 from uuid import UUID
-from enum import Enum
+
+from pydantic import BaseModel, HttpUrl
 
 
-class RepoStatusEnum(str, Enum):
+class RepoStatusEnum(StrEnum):
     QUEUED = "queued"
     CLONING = "cloning"
     INDEXING = "indexing"
