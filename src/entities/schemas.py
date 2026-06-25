@@ -1,7 +1,7 @@
 from enum import StrEnum
 from uuid import UUID
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, ConfigDict, HttpUrl
 
 
 class RepoStatusEnum(StrEnum):
@@ -24,3 +24,4 @@ class AskRequestS(BaseModel):
 class CreateRepoResponseS(BaseModel):
     repo_id: UUID
     status: str  # queued | cloning | indexing | ready | failed
+    model_config = ConfigDict(from_attributes=True)

@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import TIMESTAMP, UUID, Enum, MetaData, func, text
+from sqlalchemy import TIMESTAMP, UUID, Enum, MetaData, UniqueConstraint, func, text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from core import settings
@@ -35,6 +35,12 @@ class Base(DeclarativeBase):
 
 class Repositories(Base):
     __tablename__ = "repositories"
+    __table_args__ = (
+        UniqueConstraint(
+            "repo_url",
+            "branch",
+        ),
+    )
 
     repo_url: Mapped[str] = mapped_column(nullable=False)
     branch: Mapped[str] = mapped_column(nullable=False)

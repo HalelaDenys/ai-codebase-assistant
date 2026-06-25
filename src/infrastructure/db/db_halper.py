@@ -12,7 +12,7 @@ from sqlalchemy.ext.asyncio import (
 from core import settings
 
 
-class DBHalper:
+class DBHelper:
     def __init__(
         self,
         url: URL,
@@ -28,11 +28,13 @@ class DBHalper:
             pool_size=pool_size,
             max_overflow=max_overflow,
         )
-        self.__async_session_maker: AsyncSession = async_sessionmaker(
-            bind=self._engine,
-            expire_on_commit=False,
-            autoflush=False,
-            autocommit=False,
+        self.__async_session_maker: async_sessionmaker[AsyncSession] = (
+            async_sessionmaker(
+                bind=self._engine,
+                expire_on_commit=False,
+                autoflush=False,
+                autocommit=False,
+            )
         )
 
     @asynccontextmanager
@@ -49,7 +51,7 @@ class DBHalper:
         await self._engine.dispose()
 
 
-db_halper = DBHalper(
+db_helper = DBHelper(
     url=settings.db.postgres_dsn,
     echo=settings.db.alchemy_config.echo,
     echo_pool=settings.db.alchemy_config.echo_pool,
