@@ -30,6 +30,9 @@ class RepositoryRepo:
         await self._session.refresh(obj)
         return obj
 
+    async def commit(self) -> None:
+        await self._session.commit()
+
     async def update(self, data: BaseModel, **filters) -> Repositories | None:
         obj = await self.find_single(**filters)
 

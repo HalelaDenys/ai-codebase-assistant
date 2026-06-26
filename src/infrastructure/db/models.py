@@ -5,7 +5,7 @@ from sqlalchemy import TIMESTAMP, UUID, Enum, MetaData, UniqueConstraint, func, 
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 from core import settings
-from entities.schemas import RepoStatusEnum
+from entities.base import RepoStatusEnum
 
 
 class Base(DeclarativeBase):

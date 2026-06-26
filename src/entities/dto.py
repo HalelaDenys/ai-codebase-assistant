@@ -1,6 +1,8 @@
+from uuid import UUID
+
 from pydantic import BaseModel
 
-from entities.schemas import RepoStatusEnum
+from entities.base import RepoStatusEnum
 
 
 class CreateRepositoryDTO(BaseModel):
@@ -13,3 +15,7 @@ class UpdateRepositoryDTO(BaseModel):
     status: RepoStatusEnum | None = None
     path_url: str | None = None
     error_message: str | None = None
+
+
+class IndexRepositoryMessage(BaseModel):
+    repo_id: UUID

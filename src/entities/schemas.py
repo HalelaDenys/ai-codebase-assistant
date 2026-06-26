@@ -1,27 +1,19 @@
-from enum import StrEnum
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, HttpUrl
+from pydantic import HttpUrl
+
+from entities.base import BaseSchemas
 
 
-class RepoStatusEnum(StrEnum):
-    QUEUED = "queued"
-    CLONING = "cloning"
-    INDEXING = "indexing"
-    READY = "ready"
-    FAILED = "failed"
-
-
-class CreateRepositoryS(BaseModel):
+class CreateRepositoryS(BaseSchemas):
     repo_url: HttpUrl
     branch: str = "main"
 
 
-class AskRequestS(BaseModel):
+class AskRequestS(BaseSchemas):
     question: str
 
 
-class CreateRepoResponseS(BaseModel):
+class CreateRepoResponseS(BaseSchemas):
     repo_id: UUID
     status: str  # queued | cloning | indexing | ready | failed
-    model_config = ConfigDict(from_attributes=True)

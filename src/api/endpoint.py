@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends
 
 from core import settings
 from entities.schemas import CreateRepoResponseS, CreateRepositoryS
-from service.fabric import get_repo_service
+from service.factory import get_repo_service
 from service.repo_service import RepositoryService
 
 router = APIRouter(prefix=settings.api_prefix.repo)
